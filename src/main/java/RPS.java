@@ -51,16 +51,18 @@ public class RPS {
 
 
     public static void main(String[] args) throws IOException {
+        Properties property = new Properties();
+
         new File("./Results/").mkdir();
         Scanner sc = new Scanner (System.in);
-        System.out.println("Enter your name ");
+        System.out.println(property.getProperty(name));
         String userName = sc.nextLine();
              RPS r = new RPS ();
              r.makeFile(userName);
              r.writeFile("name: " + userName + "\n" ,userName);
 
 
-        System.out.println("Enter number of games:");
+        System.out.println(property.getProperty(games));
         int games = sc.nextInt();
         int score=0;
         // Rock - paper - scissors       player
@@ -75,12 +77,12 @@ public class RPS {
                 if (i!=000) {
                     r.writeFile("Yours " + i + "\n",userName);
                     for (int j = (int) (Math.random() * (3 - 1)); j < j + 1; j = 0) {
-                        System.out.println("Opponent: " + j);
-                        r.writeFile("Opponent: " + j + "\n",userName);
+                        System.out.println(property.getProperty(opponentt) + j);
+                        r.writeFile(property.getProperty(opponentt) + j + "\n",userName);
                         System.out.println("result: " + matrix[i][j]);
                         if (matrix[i][j].equals("Win") || matrix[i][j].equals("Draw")) {
                             score++;}
-                        r.writeFile("End round \n\n",userName );
+                        r.writeFile(property.getProperty(end)+ "\n\n",userName );
                         break;
                     }
                 }
@@ -89,9 +91,9 @@ public class RPS {
             }
         }
 
-        System.out.println("results: "+ userName +" = " + score);
+        System.out.println( property.getProperty(res)+ userName +" = " + score);
         r.writeFile("End game \n\n" ,userName );
-        r.writeFile("Score is " + score + "\n",userName );
+        r.writeFile(property.getProperty(sc) + score + "\n",userName );
     }}
 
 
